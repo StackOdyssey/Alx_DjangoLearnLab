@@ -1,0 +1,13 @@
+# API Testing Strategy
+
+We use Django’s APITestCase to validate endpoints.
+
+## Tests
+- CRUD: Create, Retrieve, Update, Delete Book
+- Filtering: /api/books/?author__name=Chinua Achebe
+- Searching: /api/books/?search=Fall
+- Ordering: /api/books/?ordering=publication_year
+- Permissions: Auth required for create/update/delete
+
+## Running Tests
+python manage.py test api
