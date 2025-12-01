@@ -11,6 +11,7 @@ from rest_framework import status
 from rest_framework.test import APITestCase
 from django.contrib.auth.models import User
 from .models import Author
+from rest_framework import filters
 
 class BookListView(generics.ListAPIView):
     """
@@ -23,9 +24,9 @@ class BookListView(generics.ListAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]  # anyone can view
  # Advanced query capabilities
     filter_backends = [
-        filters.DjangoFilterBackend,   
-        SearchFilter,                 
-        OrderingFilter,                
+        filters.DjangoFilterBackend,
+        filters.SearchFilter,
+        filters.OrderingFilter,                 
     ]
     filterset_fields = ['title', 'author__name', 'publication_year']
     search_fields = ['title', 'author__name']
