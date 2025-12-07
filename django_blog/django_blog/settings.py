@@ -68,6 +68,10 @@ TEMPLATES = [
     },
 ]
 
+# Authentication redirects
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
 WSGI_APPLICATION = 'django_blog.wsgi.application'
 
 
