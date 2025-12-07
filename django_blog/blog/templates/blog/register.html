@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="{% static 'blog/css/register.css' %}">
+</head>
+<body>
+    <h2>Register</h2>
+
+    <!-- Django messages -->
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+            {{ message }}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <p>
+          {{ form.username.label_tag }}<br>
+          {{ form.username }}
+          {% for error in form.username.errors %}
+            <span class="error">{{ error }}</span>
+          {% endfor %}
+        </p>
+
+        <p>
+          {{ form.email.label_tag }}<br>
+          {{ form.email }}
+          {% for error in form.email.errors %}
+            <span class="error">{{ error }}</span>
+          {% endfor %}
+        </p>
+
+        <p>
+          {{ form.password1.label_tag }}<br>
+          {{ form.password1 }}
+          {% for error in form.password1.errors %}
+            <span class="error">{{ error }}</span>
+          {% endfor %}
+        </p>
+
+        <p>
+          {{ form.password2.label_tag }}<br>
+          {{ form.password2 }}
+          {% for error in form.password2.errors %}
+            <span class="error">{{ error }}</span>
+          {% endfor %}
+        </p>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+</body>
+</html>

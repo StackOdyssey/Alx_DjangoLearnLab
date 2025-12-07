@@ -1,0 +1,11 @@
+<!-- blog/templates/blog/comment_form.html -->
+{% extends "blog/base.html" %}
+{% block content %}
+  <h2>Edit Comment</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+    <a href="{% url 'post-detail' object.post.pk %}">Cancel</a>
+  </form>
+{% endblock %}

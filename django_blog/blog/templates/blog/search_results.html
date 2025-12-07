@@ -1,0 +1,21 @@
+<!-- blog/templates/blog/search_results.html -->
+{% extends "blog/base.html" %}
+{% block title %}Search{% endblock %}
+{% block content %}
+  <h2>Search results{% if query %} for “{{ query }}”{% endif %}</h2>
+  {% for post in posts %}
+    <article>
+      <h3><a href="{% url 'post-detail' post.pk %}">{{ post.title }}</a></h3>
+      <p>{{ post.content|truncatewords:40 }}</p>
+      {% if post.tags.all %}
+        <p class="tags">
+          {% for tag in post.tags.all %}
+            <a class="tag" href="{% url 'tag-posts' tag.name %}">#{{ tag.name }}</a>{% if not forloop.last %}, {% endif %}
+          {% endfor %}
+        </p>
+      {% endif %}
+    </article>
+  {% empty %}
+    <p>No matching posts found.</p>
+  {% endfor %}
+{% endblock %}
